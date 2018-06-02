@@ -1,226 +1,535 @@
-// IE 10/11 do not respect box-sizing: border-box; on flex items so we need a max-width
-// This is fixed in IE12 - https://github.com/philipwalton/flexbugs/issues/3
-.flex(@basis: 0, @flex: 0, @max: 100%) {
-	flex: @basis @flex @max;
-	max-width: @max;
-	max-height: @max;
+@import (once) 'variables.less';
+
+.debug() {
+	outline: 1px dotted red !important;
+	min-width: 1px;
+	min-height: 1px;
 }
 
-// Gradient animation mixin -- basically used for buttons
-// takes a start and end color
-.gradient-animation(@start, @end) {
-	position: relative;
-	background-size: 100%;
-	background-image: linear-gradient(@start, @end);
-	transition: opacity @timing-animation-hover,
-		box-shadow (@timing-animation-hover / 2);
-	z-index: 0;
-
-	&::before {
-		position: absolute;
-		display: block;
-		height: 100%;
-		width: 100%;
-		top: 0;
-		left: 0;
-		background-image: linear-gradient(@end, @start);
-		box-shadow: none;
-		opacity: 0;
-		transition: opacity @timing-animation-hover,
-			box-shadow (@timing-animation-hover / 2);
-		z-index: -1;
-		content: '';
-	}
-
-	&:hover:not(&-is-active)::before {
-		opacity: 1;
-	}
-
-	&:active:not(&-is-disabled) {
-		box-shadow: @shadow-inset;
-	}
-
-	&:focus {
-		.focus-glow();
-	}
-
-	&:active:focus {
-		border-radius: @size-borderRadius;
-		box-shadow: @shadow-inset;
-	}
-
-	&:active::before {
-		border-radius: @size-borderRadius;
-		box-shadow: @shadow-inset;
-		opacity: 1;
-	}
-}
-
-// gradient reset takes a background if different than none
-.gradient-reset(@background: none) {
-	background: @background;
-
-	&::before {
-		content: '';
-		display: none;
-	}
-
-	&:active {
-		&::before {
-			box-shadow: none;
-		}
-	}
-}
-
-// Creates a disabled element **uses `.gradient-reset()`**
-// * `@name` is passed in to help name space the styles.
-// * `@start-color` gradient start color if other than transparent.
-// * `@end-color` gradient end color if other than transparent.
-// * `@gradient` is the flow of the gradient.
-.make-is-disabled(@name, @start-color: @color-transparent, @end-color: @color-transparent, @gradient: @standardGradient) {
-	&.@{name}-is-disabled {
-		.gradient-reset(linear-gradient(@gradient, @start-color, @end-color));
-
-		&:hover {
-			text-decoration: none;
-		}
-	}
-}
-
-.inset-box-shadow(@color: #000) {
-	box-shadow: 0 3px 3px fade(@color, 5%) inset;
-}
-
-// Normalize box sizing
-.box-sizing(@box-sizing: border-box) {
-	box-sizing: @box-sizing;
-}
-
-// Defines a standard 30% opacity
-.opacity(@opacity: 0.3) {
-	opacity: @opacity;
-}
-
-.text-truncate() {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-// This helps prevent flickering on safari when using certain animations. See
-// the following link for more info: http://stackoverflow.com/questions/3461441/prevent-flicker-on-webkit-transition-of-webkit-transform
-.no-safari-flicker() {
-	-webkit-transform: translate3d(0, 0, 0);
-}
-
-// This helps prevent strange SVG aliasing in firefox
-.no-firefox-svg-aliasing() {
-	-moz-transform: translate3d(0, 0, 0);
-}
-
-// Creates a drop shadow using a background gradient.
-// * `@start` color at the top of the gradient
-// * `@stop` color at end and fills the rest of the container
-// * `@height` the height of the gradient
-.dropshadow-gradient(@start, @stop, @height) {
-	background-image: linear-gradient(@start 0, @stop @height);
-}
-
-// Create a border like line.  There are times that you may not want to set a
-// border that is thicker than 2px because the way that borders intersect.
-// This will use a background gradient to create a "border" within a container
-// * `@direction` *'to bottom'* defines the side the "border" is on
-// * `@line` *@color-primary* defines "border" color
-// * `@background` *@color-white* defines the remainder fill color-primary
-// * `@height` *3px* defines the thickness of the "border"
-.hardstop-gradient(@direction: to bottom, @line: @color-primary, @background: @color-white, @height: 3px) {
-	background-image: linear-gradient(
-		@direction,
-		@line 0,
-		@line @height,
-		@background @height
-	);
-}
-
-// Create an element which displays the properties of a selectable UI component
-.is-selectable() {
-	cursor: pointer;
-}
-
-// -----------------------------------------------------------------------------
-// Animations
-// -----------------------------------------------------------------------------
-
-// This set of mixins in intended to be used with ReactCSSTransitionGroup. It's
-// important that you place this mixin directly underneath the parent that
-// should be animating.
-
-.transition-group-animation-fade(@timing: @timing-animation-fade) {
-	&-enter {
-		.opacity(0.01);
-	}
-
-	&-enter&-enter-active {
-		.opacity(1);
-
-		transition: opacity @timing ease-in;
-	}
-
-	&-leave {
-		.opacity(1);
-	}
-
-	&-leave&-leave-active {
-		.opacity(0.01);
-
-		transition: opacity @timing ease-in;
-	}
-}
-
-// This is a simple mixin to normalize the styles for an unselectable and unclickable element.
-.no-cursor() {
-	cursor: not-allowed;
-}
-
-// Place a styled box on the left edge of the current element with the given scale and width
-.left-marker(@scale:1; @width: @size-XXS + 1) {
-	position: relative;
-
+.clear() {
 	&::after {
-		position: absolute;
-		left: 0;
-		top: 0;
-		height: 100%;
-		width: @width;
-		background-color: @color-primary;
+		display: block;
+		clear: both;
 		content: '';
-		transform-origin: 0 0;
-		transform: scaleX(@scale);
-		transition: transform @timing-animation-hover;
 	}
 }
 
-.focus-glow(@color: @color-primary-30) {
-	box-shadow: 0 0 0 3px @color;
+.set-relative() {
+	display: block;
+	position: relative;
 }
 
-// -----------------------------------------------------------------------------
-// Typography
-// -----------------------------------------------------------------------------
-
-.bold() {
-	font-weight: 500;
+.set-absolute() {
+	position: absolute;
 }
 
-// -----------------------------------------------------------------------------
-// Charts
-// -----------------------------------------------------------------------------
+.set-flex() {
+	display: flex;
+}
 
-.link() {
-	text-decoration: none;
-	color: @color-linkColor;
+.reset-list() {
+	list-style: none inside;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
 
-	&:hover {
-		color: @color-linkColorHover;
+.px2rem(@attr: width; @size: 16) {
+	.get-values(length(@size));
+	.get-values(@s, @i: 1) when (@i =< length(@size)) {
+		@current_value: extract(@size, @i);
+
+		& when not(@current_value = 0) {
+			@{attr}+_: unit(@current_value / 16, rem);
+		}
+
+		& when (@current_value = 0) {
+			@{attr}+_: 0;
+		}
+
+		.get-values(@s, @i + 1);
 	}
+}
+
+.rem2px(@attr: width; @size: 16) {
+	.get-values(length(@size));
+	.get-values(@s, @i: 1) when (@i =< length(@size)) {
+		@current_value: extract(@size, @i);
+
+		& when not(@current_value = 0) {
+			@{attr}+_: unit(16 * @current_value, px);
+		}
+
+		& when (@current_value = 0) {
+			@{attr}+_: 0;
+		}
+
+		.get-values(@s, @i + 1);
+	}
+}
+
+.pt2px(@attr: width; @size: 16) {
+	.get-values(length(@size));
+	.get-values(@s, @i: 1) when (@i =< length(@size)) {
+		@current_value: extract(@size, @i);
+
+		& when not(@current_value = 0) {
+			@{attr}+_: unit(round(@current_value * 1.333333), px);
+		}
+
+		& when (@current_value = 0) {
+			@{attr}+_: 0;
+		}
+
+		.get-values(@s, @i + 1);
+	}
+}
+
+.px2pt(@attr: width; @size: 16) {
+	.get-values(length(@size));
+	.get-values(@s, @i: 1) when (@i =< length(@size)) {
+		@current_value: extract(@size, @i);
+
+		& when not(@current_value = 0) {
+			@{attr}+_: unit(round(0.75 * @current_value), pt);
+		}
+
+		& when (@current_value = 0) {
+			@{attr}+_: 0;
+		}
+
+		.get-values(@s, @i + 1);
+	}
+}
+
+.pt2rem(@attr: width; @size: 16) {
+	.get-values(length(@size));
+	.get-values(@s, @i: 1) when (@i =< length(@size)) {
+		@current_value: extract(@size, @i);
+
+		& when not(@current_value = 0) {
+			@{attr}+_: unit(round(@current_value * 1.333333 / 16), rem);
+		}
+
+		& when (@current_value = 0) {
+			@{attr}+_: 0;
+		}
+
+		.get-values(@s, @i + 1);
+	}
+}
+
+.rem2pt(@attr: width; @size: 16) {
+	.get-values(length(@size));
+	.get-values(@s, @i: 1) when (@i =< length(@size)) {
+		@current_value: extract(@size, @i);
+
+		& when not(@current_value = 0) {
+			@{attr}+_: unit(round(0.75 * 16 * @current_value), pt);
+		}
+
+		& when (@current_value = 0) {
+			@{attr}+_: 0;
+		}
+
+		.get-values(@s, @i + 1);
+	}
+}
+
+.square(@size: 0, @unit) {
+	width: unit(@size, @unit);
+	height: unit(@size, @unit);
+}
+
+.circle(@size: 0, @unit) {
+	width: unit(@size, @unit);
+	height: unit(@size, @unit);
+	border-radius: 50%;
+}
+
+.halo() {
+	&::after {
+		display: block;
+		content: '';
+		position: absolute;
+		.circle(3.125, rem);
+		background-color: rgba(187, 187, 187, 0.5);
+		opacity: 0.3;
+		top: 50%;
+		left: 50%;
+		.px2rem(margin-top, -25px);
+		.px2rem(margin-left, -25px);
+	}
+}
+
+.animate(@params) {
+	animation: @params;
+}
+
+.transition-scheme(@t) {
+	transition: @t;
+}
+
+.collapse() {
+	overflow: hidden;
+	max-height: 0;
+	transition: @transition-collapse;
+	position: relative;
+}
+
+.expand() {
+	max-height: 1000px !important;
+	transition: @transition-collapse !important;
+	transition-duration: 1s !important;
+	overflow: visible !important;
+}
+
+.perspective(@perspective) {
+	transform+_: perspective(@perspective);
+}
+.rotate(@degrees) {
+	transform+_: rotate(@degrees);
+}
+.rotateX(@degrees) {
+	transform+_: rotateX(@degrees);
+}
+.rotateY(@degrees) {
+	transform+_: rotateY(@degrees);
+}
+.rotateZ(@degrees) {
+	transform+_: rotateZ(@degrees);
+}
+.scale(@ratio) {
+	transform+_: scale(@ratio);
+}
+.scaleX(@ratio) {
+	transform+_: scaleX(@ratio);
+}
+.scaleY(@ratio) {
+	transform+_: scaleY(@ratio);
+}
+.translate(@x: 0, @y: 0) {
+	transform+_: translate(@x, @y);
+}
+.skew(@x: 0, @y: 0) {
+	transform+_: skew(@x, @y);
+}
+.skewX(@x: 0) {
+	transform+_: skewX(@x);
+}
+.skewY(@y: 0) {
+	transform+_: skewY(@y);
+}
+.translate3d(@x: 0, @y: 0, @z: 0) {
+	transform+_: translate3d(@x, @y, @z);
+}
+
+.transformOrigin(@origin) {
+	transform-origin: @origin;
+}
+
+.transition(@time: 1s, @func: ease, @target: all) {
+	transition: @target @time @func;
+}
+
+.translateX(@x: 0) {
+	transform+_: translateX(@x);
+}
+.translateY(@y: 0) {
+	transform+_: translateY(@y);
+}
+
+.shadow(@x, @y, @blur, @stretch, @color, @alpha: 0.4) {
+	box-shadow+: @x @y @blur @stretch
+		rgba(red(@color), green(@color), blue(@color), @alpha);
+}
+
+.default-shadow() {
+	//.shadow(2px, 2px, 5px, 0, @black);
+	box-shadow: 2px 2px 2px 0
+			rgba(
+				red(@ribbonDropdownShadow),
+				green(@ribbonDropdownShadow),
+				blue(@ribbonDropdownShadow),
+				0.7
+			),
+		-0.5px 0 1px 0 rgba(red(@ribbonDropdownShadow), green(@ribbonDropdownShadow), blue(@ribbonDropdownShadow), 0.7);
+}
+
+.win-shadow() {
+	box-shadow+: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.shadow(@size) when (@size = 0) {
+	box-shadow: none;
+}
+
+.shadow(@size) when (@size = 1) {
+	box-shadow+: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.shadow(@size) when (@size = 2) {
+	box-shadow+: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
+
+.shadow(@size) when (@size = 3) {
+	box-shadow+: 0 17px 50px 0 rgba(0, 0, 0, 0.19),
+		0 12px 15px 0 rgba(0, 0, 0, 0.24);
+}
+
+.shadow(@size) when (@size = 4) {
+	box-shadow+: 0 25px 55px 0 rgba(0, 0, 0, 0.21),
+		0 16px 28px 0 rgba(0, 0, 0, 0.22);
+}
+
+.shadow(@size) when (@size = 5) {
+	box-shadow+: 0 40px 77px 0 rgba(0, 0, 0, 0.22),
+		0 27px 24px 0 rgba(0, 0, 0, 0.2);
+}
+
+.shadow-right() {
+	box-shadow+: 5px 0 7px -6px rgba(0, 0, 0, 0.75);
+}
+
+.shadow-left() {
+	box-shadow+: -5px 0 7px -6px rgba(0, 0, 0, 0.75);
+}
+
+.text-ellipsis() {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.focus-show(@color) {
+	box-shadow+: 0 0 0 3px rgba(red(@color), green(@color), blue(@color), 0.45);
+}
+
+.neb(@size: 1rem, @shift: 0.625rem) {
+	&::before {
+		display: block;
+		position: absolute;
+		content: '';
+		width: @size;
+		height: @size;
+		background-color: inherit;
+		border: 1px solid transparent;
+		border-right-color: inherit;
+		border-bottom-color: inherit;
+	}
+
+	&.neb-s {
+		&::before {
+			top: 100%;
+			left: 50%;
+			.translateX(-50%);
+			.translateY(-50%);
+			.rotate(45deg);
+		}
+	}
+
+	&.neb-sw {
+		&::before {
+			top: 100%;
+			left: @shift;
+			.translateY(-50%);
+			.rotate(45deg);
+		}
+	}
+
+	&.neb-se {
+		&::before {
+			top: 100%;
+			right: @shift;
+			.translateY(-50%);
+			.rotate(45deg);
+		}
+	}
+
+	&.neb-n {
+		&::before {
+			top: 0;
+			left: 50%;
+			.translateX(-50%);
+			.translateY(-50%);
+			.rotate(-135deg);
+		}
+	}
+
+	&.neb-nw {
+		&::before {
+			top: 0;
+			left: @shift;
+			.translateY(-50%);
+			.rotate(-135deg);
+		}
+	}
+
+	&.neb-ne {
+		&::before {
+			top: 0;
+			right: @shift;
+			.translateY(-50%);
+			.rotate(-135deg);
+		}
+	}
+
+	&.neb-en {
+		&::before {
+			top: @shift;
+			right: 0;
+			.translateX(50%);
+			.rotate(-45deg);
+		}
+	}
+
+	&.neb-e {
+		&::before {
+			top: 50%;
+			right: 0;
+			.translateX(50%);
+			.translateY(-50%);
+			.rotate(-45deg);
+		}
+	}
+
+	&.neb-es {
+		&::before {
+			bottom: @shift;
+			right: 0;
+			.translateX(50%);
+			.rotate(-45deg);
+		}
+	}
+
+	&.neb-wn {
+		&::before {
+			top: @shift;
+			left: 0;
+			.translateX(-50%);
+			.rotate(135deg);
+		}
+	}
+
+	&.neb-w {
+		&::before {
+			top: 50%;
+			left: 0;
+			.translateX(-50%);
+			.translateY(-50%);
+			.rotate(135deg);
+		}
+	}
+
+	&.neb-ws {
+		&::before {
+			bottom: @shift;
+			left: 0;
+			.translateX(-50%);
+			.rotate(135deg);
+		}
+	}
+}
+
+.neb2(@size: 1rem; @shift: 0.625rem; @color: @white) {
+	&::before {
+		display: block;
+		content: '';
+		width: 0;
+		height: 0;
+		border-style: solid;
+		position: absolute;
+	}
+
+	&.neb-s {
+		&::before {
+			border-width: @size @size 0 @size;
+			border-color: @color transparent transparent transparent;
+			top: 100%;
+			left: 50%;
+			.translateX(-50%);
+			.translateY(-50%);
+		}
+	}
+
+	&.neb-n {
+		&::before {
+			border-width: 0 @size @size @size;
+			border-color: transparent transparent @color transparent;
+			top: 0;
+			left: 50%;
+			.translateX(-50%);
+			.translateY(-50%);
+		}
+	}
+
+	&.neb-e {
+		&::before {
+			border-width: @size 0 @size @size;
+			border-color: transparent transparent transparent @color;
+			top: 50%;
+			right: 0;
+			.translateX(50%);
+			.translateY(-50%);
+		}
+	}
+
+	&.neb-w {
+		&::before {
+			border-width: @size @size @size 0;
+			border-color: transparent @color transparent transparent;
+			top: 50%;
+			left: 0;
+			.translateX(-50%);
+			.translateY(-50%);
+		}
+	}
+}
+
+.toggle() {
+	position: relative;
+	cursor: pointer;
+	padding-right: 1.5rem !important;
+	user-select: none;
+
+	&::before {
+		display: block;
+		position: absolute;
+		vertical-align: middle;
+		color: transparent;
+		font-size: 0;
+		content: '';
+		.px2rem(height, 5px);
+		.px2rem(width, 5px);
+		background-color: @transparent;
+		border-left: 1px solid;
+		border-bottom: 1px solid;
+		border-color: @dark;
+		top: 50%;
+		left: 100%;
+		margin-left: -1rem;
+		margin-top: -0.1625rem;
+		z-index: 2;
+		transform: rotate(-45deg);
+		transition: @transition-short;
+		transform-origin: center center 1px;
+	}
+}
+
+.hideElement(@el) {
+	@{el} {
+		width: 1px;
+		height: 1px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+	}
+}
+
+.hideScrollBars() {
+	&::-webkit-scrollbar {
+		display: none !important;
+	}
+	-ms-overflow-style: -ms-autohiding-scrollbar;
 }

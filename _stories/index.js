@@ -1,13 +1,11 @@
 import React from 'react';
+import path from 'path';
 import { storiesOf } from '@storybook/react';
 import { withReadme } from 'storybook-readme';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 
-// import TestComp from '../src/components/pane/examples/base';
-// import Button from '../src/components/Button/examples';
-
-let stories = storiesOf('Test', module);
+let stories = storiesOf('Components', module);
 
 const storyWrapper = story => {
 	return <div style={{ margin: '35px' }}>{story()}</div>;
@@ -22,5 +20,5 @@ const req = require.context('../src/components', true, /\.story.js$/);
 
 req.keys().forEach(filename => {
 	//console.log(filename, req);
-	stories.add(filename, withReadme(...req(filename).default));
+	stories.add(path.basename(filename), withReadme(...req(filename).default));
 });

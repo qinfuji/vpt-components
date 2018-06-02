@@ -21,11 +21,12 @@ import PropTypes from 'prop-types';
 import style from './${COMPONENT_NAME}.less'
 
 class ${COMPONENT_NAME}  extends React.Component {
-	 
-	return (
-		<div></div>
-	);
-};
+	render(){
+		 return <div></div>
+	}
+}
+
+${COMPONENT_NAME}.displayName = '${COMPONENT_NAME}';
 
 ${COMPONENT_NAME}.propTypes = {};
 
@@ -46,9 +47,7 @@ describe('${COMPONENT_NAME}', () => {
 	common(${COMPONENT_NAME});
 	describe('Events', () => {
 		describe('demo fn', () => {
-			it('demo', () => {
-				
-			});
+			it('demo', () => {});
 		});
 	});
 });

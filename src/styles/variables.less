@@ -1,305 +1,295 @@
-// -----------------------------------------------------------------------------
-// Typography
-// -----------------------------------------------------------------------------
+@unitSize: 4px;
 
-@fontSize: 12px;
-@fontFamily: 'Helvetica Neue', Helvetica, Arial, Sans-Serif;
-@font: @fontSize @fontFamily;
-@font-chart: 11px sans-serif;
+// Fonts
+@fontName: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+	'Ubuntu', 'Helvetica Neue', sans-serif;
 
-// -----------------------------------------------------------------------------
-// Sizes
-// -----------------------------------------------------------------------------
+@fontSize: @unitSize * 4;
 
-@size-font-S: 9px;
-@size-font: 12px;
-@size-font-L: 15px;
-@size-font-XL: 18px;
-
-// standard border radius
-@size-borderRadius: 4px;
-@size-borderWidth: 1px;
-
-@size-standard-height: 28px; // should have been `@size-height-standard`
-@size-height-L: 46px;
-
-@size-XXS: 3px;
-@size-XS: 6px;
-@size-S: 9px;
-@size-standard: 12px;
-@size-L: 15px;
-@size-XL: 24px;
-@size-XXL: 30px;
-
-@size-expander-button: 20px;
-@size-tag: 20px;
-
-// -----------------------------------------------------------------------------
-// Z Indices
-// -----------------------------------------------------------------------------
-
-@zindex-base: 1;
-@zindex-nav: 3000;
-@zindex-modal: 4000;
-@zindex-tooltip: 5000;
-
-// -----------------------------------------------------------------------------
-// Animations
-// -----------------------------------------------------------------------------
-@timing-animation-hover: 100ms;
-@timing-animation-fade: 300ms;
-@timing-function-easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
-
-// -----------------------------------------------------------------------------
-// Gradients
-// -----------------------------------------------------------------------------
-
-// Used when defining a gradient (mostly buttons)
-@standardGradient: to bottom;
-@hoverGradient: to top;
-
-// -----------------------------------------------------------------------------
-// Shadows
-// -----------------------------------------------------------------------------
-
-// Standard inset shadow
-@shadow-inset: 0 10px 10px -10px @color-gray-30 inset;
-
-// -----------------------------------------------------------------------------
 // Colors
-// -----------------------------------------------------------------------------
+@lightenValue: 15%;
+@darkenValue: 15%;
 
-// Grays
-@color-lightGray: #f4f4f4;
-@color-gray: #e3e3e3;
-@color-mediumGray: #c5c5c5;
-@color-darkGray: #333;
+@transparent: transparent;
 
-// Standard text color
-@color-textColor: @color-darkGray;
-@color-disabledText: tint(@color-textColor, 50%);
+@brandColor1: #2ac4f4;
+@brandColor2: #004d6f;
 
-// Standard link colors
-@color-linkColor: @color-primary;
-@color-linkColorHover: darken(@color-linkColor, 7%);
+@black: #000000;
+@white: #ffffff;
+@dark: #1d1d1d;
+@light: #f8f8f8;
+@gray: #bebebe;
+@grayBlue: #607d8b;
+@grayWhite: #f5f5f5;
+@grayMouse: #455a64;
 
-// Standard background color
-@color-backgroundColor: @color-lightGray;
+@lime: #a4c400;
+@green: #60a917;
+@emerald: #008a00;
+@blue: #00aff0;
+@teal: #00aba9;
+@cyan: #1ba1e2;
+@cobalt: #0050ef;
+@indigo: #6a00ff;
+@violet: #aa00ff;
+@pink: #dc4fad;
+@magenta: #d80073;
+@crimson: #a20025;
+@red: #ce352c;
+@orange: #fa6800;
+@amber: #f0a30a;
+@yellow: #fff000;
+@brown: #825a2c;
+@olive: #6d8764;
+@steel: #647687;
+@mauve: #76608a;
+@taupe: #87794e;
 
-// Standard background color
-@color-pageBackgroundColor: @color-gray;
+@lightLime: lighten(@lime, @lightenValue);
+@lightGreen: lighten(@green, @lightenValue);
+@lightEmerald: lighten(@emerald, @lightenValue);
+@lightBlue: lighten(@blue, @lightenValue);
+@lightTeal: lighten(@teal, @lightenValue);
+@lightCyan: lighten(@cyan, @lightenValue);
+@lightCobalt: lighten(@cobalt, @lightenValue);
+@lightIndigo: lighten(@indigo, @lightenValue);
+@lightViolet: lighten(@violet, @lightenValue);
+@lightPink: lighten(@pink, @lightenValue);
+@lightMagenta: lighten(@magenta, @lightenValue);
+@lightCrimson: lighten(@crimson, @lightenValue);
+@lightRed: lighten(@red, @lightenValue);
+@lightOrange: lighten(@orange, @lightenValue);
+@lightAmber: lighten(@amber, @lightenValue);
+@lightYellow: lighten(@yellow, @lightenValue);
+@lightBrown: lighten(@brown, @lightenValue);
+@lightOlive: lighten(@olive, @lightenValue);
+@lightSteel: lighten(@steel, @lightenValue);
+@lightMauve: lighten(@mauve, @lightenValue);
+@lightTaupe: lighten(@taupe, @lightenValue);
+@lightGray: lighten(@gray, @lightenValue);
+@lightGrayBlue: lighten(@grayBlue, @lightenValue);
 
-// General colors
-@color-white: #fff;
-@color-black: #000;
-@color-transparent: rgba(
-	255,
-	255,
-	255,
-	0
-); // normalize transparent due to Safari bug
+@darkLime: darken(@lime, @darkenValue);
+@darkGreen: darken(@green, @darkenValue);
+@darkEmerald: darken(@emerald, @darkenValue);
+@darkBlue: darken(@blue, @darkenValue);
+@darkTeal: darken(@teal, @darkenValue);
+@darkCyan: darken(@cyan, @darkenValue);
+@darkCobalt: darken(@cobalt, @darkenValue);
+@darkIndigo: darken(@indigo, @darkenValue);
+@darkViolet: darken(@violet, @darkenValue);
+@darkPink: darken(@pink, @darkenValue);
+@darkMagenta: darken(@magenta, @darkenValue);
+@darkCrimson: darken(@crimson, @darkenValue);
+@darkRed: darken(@red, @darkenValue);
+@darkOrange: darken(@orange, @darkenValue);
+@darkAmber: darken(@amber, @darkenValue);
+@darkYellow: darken(@yellow, @darkenValue);
+@darkBrown: darken(@brown, @darkenValue);
+@darkOlive: darken(@olive, @darkenValue);
+@darkSteel: darken(@steel, @darkenValue);
+@darkMauve: darken(@mauve, @darkenValue);
+@darkTaupe: darken(@taupe, @darkenValue);
+@darkGray: darken(@gray, @darkenValue);
+@darkGrayBlue: darken(@grayBlue, @darkenValue);
 
-// Primary colors
-@color-primary: #2abbb0;
-@color-primaryLight: tint(@color-primary, 85%);
-@color-primaryMedium: tint(@color-primary, 65%);
+@colorList: black, white, dark, light, grayBlue, grayWhite, grayMouse,
+	brandColor1, brandColor2, lime, green, emerald, blue, teal, cyan, cobalt,
+	indigo, violet, pink, magenta, crimson, red, orange, amber, yellow, brown,
+	olive, steel, mauve, taupe, gray, lightLime, lightGreen, lightEmerald,
+	lightBlue, lightTeal, lightCyan, lightCobalt, lightIndigo, lightViolet,
+	lightPink, lightMagenta, lightCrimson, lightRed, lightOrange, lightAmber,
+	lightYellow, lightBrown, lightOlive, lightSteel, lightMauve, lightTaupe,
+	lightGray, lightGrayBlue, darkLime, darkGreen, darkEmerald, darkBlue, darkTeal,
+	darkCyan, darkCobalt, darkIndigo, darkViolet, darkPink, darkMagenta,
+	darkCrimson, darkRed, darkOrange, darkAmber, darkYellow, darkBrown, darkOlive,
+	darkSteel, darkMauve, darkTaupe, darkGray, darkGrayBlue;
 
-// Transparent primary colors
-@color-primary-10: fade(@color-primary, 10%);
-@color-primary-30: fade(@color-primary, 30%);
+@colorListLength: length(@colorList);
 
-// Transparent grays
-@color-gray-5: fade(@color-black, 5%);
-@color-gray-10: fade(@color-black, 10%);
-@color-gray-25: fade(@color-black, 25%);
-@color-gray-30: fade(@color-black, 30%);
-@color-gray-40: fade(@color-black, 40%);
-@color-gray-50: fade(@color-black, 50%);
-@color-gray-60: fade(@color-black, 60%);
+// Body
+@bodyColor: lighten(@black, 13%);
 
-// Transparent whites
-@color-white-50: fade(@color-white, 50%);
-@color-white-85: fade(@color-white, 85%);
+// Hover
+@hoverBackground: rgba(red(@dark), green(@dark), blue(@dark), 0.1);
+@hoverBackground2: rgba(red(@dark), green(@dark), blue(@dark), 0.5);
+@hoverBackgroundLight3: rgba(red(@white), green(@white), blue(@white), 0.3);
+@hoverBackgroundLight2: rgba(red(@white), green(@white), blue(@white), 0.2);
+@hoverBackgroundLight1: rgba(red(@white), green(@white), blue(@white), 0.1);
+@hoverBackgroundLight: rgba(red(@white), green(@white), blue(@white), 0.01);
 
-// Standard border color
-@color-borderColor: @color-mediumGray;
-@color-borderColorLight: @color-gray;
+// Appbar
+@appBarBackground: @brandColor2;
+@appBarBackgroundActive: lighten(@brandColor2, 10%);
+@appBarColor: @white;
 
-// Table colors
-@color-table-header: #767b7f;
-@color-table-header-sorted: #525659;
-@color-table-header-light: @color-lightGray;
-@color-table-header-sorted-light: @color-gray;
+// Taskbar
+@taskBarBackground: #053046;
+@taskBarItemHover: rgba(red(@white), green(@white), blue(@white), 0.1);
+@taskBarItemActive: rgba(red(@white), green(@white), blue(@white), 0.3);
 
-// -------------------------------------
-// Featured Colors
-// -------------------------------------
-// Featured color variables are intended to only be used for components that
-// have "states" to them like `info`, `waring`, `danger` etc.
+// Form and Inputs
+@inputBorder: #d9d9d9;
+@checkBackground: darken(@inputBorder, 10%);
 
-// `@featured-color-default-borderColor` should only be used for banner or
-// button or button like components.
+// Disabled
+@disabledBackground: #e9e9e9;
+@disabledBorder: #e9e9e9;
+@disabledColor: lighten(@dark, 50%);
 
-// Generally you should not use `@featured-color-primary` instead use
-// `@color-primary`
-
-// Featured colors
-@featured-color-default: #f3f3f3;
-@featured-color-primary: @color-primary;
-@featured-color-success: #3fa516;
-@featured-color-info: #0089c4;
-@featured-color-warning: #feb209;
-@featured-color-danger: #f7403a;
-@featured-color-danger-30: fade(@featured-color-danger, 30%);
-
-// Featured default color
-@featured-color-default-borderColor: #c5c5c5;
-@featured-color-default-backgroundColor: #ededed;
-@featured-color-default-gradientStartColor: #f3f3f3;
-@featured-color-default-gradientEndColor: #e2e2e2;
-
-// Featured primary color
-@featured-color-primary-colorHover: shade(@featured-color-primary, 35%);
-@featured-color-primary-backgroundColorLight: tint(
-	@featured-color-primary,
-	90%
-);
-@featured-color-primary-backgroundColor: tint(@featured-color-primary, 70%);
-@featured-color-primary-borderColorLite: tint(@featured-color-primary, 60%);
-@featured-color-primary-borderColorMedium: tint(@featured-color-primary, 30%);
-@featured-color-primary-gradientStartColor: tint(@featured-color-primary, 30%);
-@featured-color-primary-gradientEndColor: @featured-color-primary;
-@featured-color-primary-borderColor: @featured-color-primary;
-
-// Featured success color
-@featured-color-success-colorHover: shade(@featured-color-success, 35%);
-@featured-color-success-backgroundColorLight: tint(
-	@featured-color-success,
-	90%
-);
-@featured-color-success-backgroundColor: tint(@featured-color-success, 70%);
-@featured-color-success-borderColorLite: tint(@featured-color-success, 60%);
-@featured-color-success-gradientStartColor: tint(@featured-color-success, 30%);
-@featured-color-success-gradientEndColor: @featured-color-success;
-@featured-color-success-borderColor: @featured-color-success;
-
-// Featured info color
-@featured-color-info-colorHover: shade(@featured-color-info, 35%);
-@featured-color-info-backgroundColorLight: tint(@featured-color-info, 90%);
-@featured-color-info-borderColorLite: tint(@featured-color-info, 60%);
-@featured-color-info-backgroundColor: tint(@featured-color-info, 70%);
-@featured-color-info-gradientStartColor: tint(@featured-color-info, 30%);
-@featured-color-info-gradientEndColor: @featured-color-info;
-@featured-color-info-borderColor: @featured-color-info;
-
-// Featured warning color
-@featured-color-warning-colorHover: shade(@featured-color-warning, 35%);
-@featured-color-warning-backgroundColorLight: tint(
-	@featured-color-warning,
-	90%
-);
-@featured-color-warning-borderColorLite: tint(@featured-color-warning, 60%);
-@featured-color-warning-backgroundColor: tint(@featured-color-warning, 70%);
-@featured-color-warning-gradientStartColor: tint(@featured-color-warning, 30%);
-@featured-color-warning-gradientEndColor: @featured-color-warning;
-@featured-color-warning-borderColor: @featured-color-warning;
-
-// Featured danger color
-@featured-color-danger-colorHover: shade(@featured-color-danger, 35%);
-@featured-color-danger-backgroundColorLight: tint(@featured-color-danger, 90%);
-@featured-color-danger-borderColorLite: tint(@featured-color-danger, 60%);
-@featured-color-danger-backgroundColor: tint(@featured-color-danger, 70%);
-@featured-color-danger-gradientStartColor: tint(@featured-color-danger, 30%);
-@featured-color-danger-gradientEndColor: @featured-color-danger;
-@featured-color-danger-borderColor: @featured-color-danger;
-
-// -------------------------------------
-// Chart Colors
-// -------------------------------------
-// NOTE: if you make changes to chart colors, you **must** keep their javascript
-// counterparts in sync.
-
-// This list should always be in sync with the full set of chart colors
-@color-chart-variables: color-chart-0, color-chart-0-lightest,
-	color-chart-0-light, color-chart-0-dark, color-chart-0-darkest, color-chart-1,
-	color-chart-1-lightest, color-chart-1-light, color-chart-1-dark,
-	color-chart-1-darkest, color-chart-2, color-chart-2-lightest,
-	color-chart-2-light, color-chart-2-dark, color-chart-2-darkest, color-chart-3,
-	color-chart-3-lightest, color-chart-3-light, color-chart-3-dark,
-	color-chart-3-darkest, color-chart-4, color-chart-4-lightest,
-	color-chart-4-light, color-chart-4-dark, color-chart-4-darkest, color-chart-5,
-	color-chart-5-lightest, color-chart-5-light, color-chart-5-dark,
-	color-chart-5-darkest, color-chart-good, color-chart-good-lightest,
-	color-chart-good-light, color-chart-good-dark, color-chart-good-darkest,
-	color-chart-bad, color-chart-bad-lightest, color-chart-bad-light,
-	color-chart-bad-dark, color-chart-bad-darkest, color-chart-neutral;
-
-@color-chart-0: @featured-color-info;
-@color-chart-0-lightest: tint(@color-chart-0, 90%);
-@color-chart-0-light: tint(@color-chart-0, 65%);
-@color-chart-0-dark: shade(@color-chart-0, 35%);
-@color-chart-0-darkest: shade(@color-chart-0, 70%);
-
-@color-chart-1: #ff8700;
-@color-chart-1-lightest: tint(@color-chart-1, 90%);
-@color-chart-1-light: tint(@color-chart-1, 65%);
-@color-chart-1-dark: shade(@color-chart-1, 35%);
-@color-chart-1-darkest: shade(@color-chart-1, 70%);
-
-@color-chart-2: #c73774;
-@color-chart-2-lightest: tint(@color-chart-2, 90%);
-@color-chart-2-light: tint(@color-chart-2, 65%);
-@color-chart-2-dark: shade(@color-chart-2, 35%);
-@color-chart-2-darkest: shade(@color-chart-2, 70%);
-
-@color-chart-3: #00b8c8;
-@color-chart-3-lightest: tint(@color-chart-3, 90%);
-@color-chart-3-light: tint(@color-chart-3, 65%);
-@color-chart-3-dark: shade(@color-chart-3, 35%);
-@color-chart-3-darkest: shade(@color-chart-3, 70%);
-
-@color-chart-4: #fed100;
-@color-chart-4-lightest: tint(@color-chart-4, 90%);
-@color-chart-4-light: tint(@color-chart-4, 65%);
-@color-chart-4-dark: shade(@color-chart-4, 35%);
-@color-chart-4-darkest: shade(@color-chart-4, 70%);
-
-@color-chart-5: #824bb0;
-@color-chart-5-lightest: tint(@color-chart-5, 90%);
-@color-chart-5-light: tint(@color-chart-5, 65%);
-@color-chart-5-dark: shade(@color-chart-5, 35%);
-@color-chart-5-darkest: shade(@color-chart-5, 70%);
-
-// Semantic colors
-
-@color-chart-good: @featured-color-success;
-@color-chart-good-lightest: tint(@color-chart-good, 90%);
-@color-chart-good-light: tint(@color-chart-good, 65%);
-@color-chart-good-dark: shade(@color-chart-good, 35%);
-@color-chart-good-darkest: shade(@color-chart-good, 70%);
-
-@color-chart-bad: @featured-color-danger;
-@color-chart-bad-lightest: tint(@color-chart-bad, 90%);
-@color-chart-bad-light: tint(@color-chart-bad, 65%);
-@color-chart-bad-dark: shade(@color-chart-bad, 35%);
-@color-chart-bad-darkest: shade(@color-chart-bad, 70%);
-
-@color-chart-neutral: @color-gray;
-
-// -----------------------------------------------------------------------------
 // Borders
-// -----------------------------------------------------------------------------
+@borderRadius: 0.25rem;
+@borderColor: darken(@light, 10%);
 
-@border-standardBorder: 1px solid @color-borderColor;
-@border-lightBorder: 1px solid @color-borderColorLight;
+// Links
+@linkColor: #007bff; //#0366d6
+@linkColorHover: #0056b3;
 
-@border-table: 1px solid @color-table-header;
-@border-table-header: 1px solid #babdbe;
-@border-table-header-light: 1px solid @color-gray;
-@border-table-body: 1px solid @color-gray;
+// Accent colors
+@primaryColor: @cobalt;
+@secondaryColor: @grayBlue;
+@successColor: @green;
+@alertColor: @red;
+@warningColor: @lightOrange;
+@yellowColor: #ffe484;
+@infoColor: @lightCyan;
+@darkColor: lighten(@dark, 20%);
+@lightColor: @light;
+@brand1Color: @brandColor1;
+@brand2Color: @brandColor2;
 
-// -----------------------------------------------------------------------------
-// Patterns
-// -----------------------------------------------------------------------------
+@buttonPredefinedTypes: primary, secondary, success, alert, warning, yellow,
+	info, dark, light, brand1, brand2;
+@buttonPredefinedTypesLength: length(@buttonPredefinedTypes);
 
-@pattern-diagonal-striped: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cGF0aCBkPSJNLTEgNUw1IC0xWk01IDNMMyA1Wk0tMSAxTDEgLTEiIHN0cm9rZT0iI2UzZTNlMyIgc3Ryb2tlLXdpZHRoPSIxIj48L3BhdGg+Cjwvc3ZnPg==');
+// Z-index
+@zindex-selectedCheck: 100;
+@zindex-absolute: 500;
+@zindex-dropdown: 1000;
+@zindex-sticky: 1020;
+@zindex-fixed: 1030;
+@zindex-modal-backdrop: 1040;
+@zindex-modal: 1050;
+@zindex-popover: 1060;
+@zindex-tooltip: 1070;
+@zindex-top: 1080;
+@zindex-notify: 1085;
+@zindex-charms: 1090;
+@zindex-overlay: 2000;
+@zindex-fullscreen: 2147483647;
+
+// Percents breakpoints
+@percentBreakpointsList: 25, 50, 75, 100;
+@percentBreakpointsLength: length(@percentBreakpointsList);
+
+// Tiles
+@tileApp: 44px 44px;
+@tileSmall: 70px 70px;
+@tileMedium: 150px 150px;
+@tileWide: 310px 150px;
+@tileLarge: 310px 310px;
+@tileMargin: 5px;
+@tileCellSize: extract(@tileMedium, 1);
+@tileOutlineColor: rgba(red(@dark), green(@dark), blue(@dark), 0.1);
+@tileTransformPerspective: 500px;
+@tileTransformRotate: 0.138372rad;
+@tileSize: extract(@tileMedium, 1);
+
+// Media breakpoints
+@fs: 0;
+@sm: 576px;
+@md: 768px;
+@lg: 992px;
+@xl: 1200px;
+@xxl: 1452px;
+
+@mediaBreakpointListMobile: fs, sm, md, lg, xl, xxl;
+@mediaBreakpointListDesktop: xxl, xl, lg, md, sm, fs;
+
+@mediaBreakpointListMobileLength: length(@mediaBreakpointListMobile);
+@mediaBreakpointListDesktopLength: length(@mediaBreakpointListDesktop);
+
+// Transition
+@transition-short: all 0.15s ease-in-out;
+@transition-base: all 0.3s ease-in-out;
+@transition-long: all 1s ease-in-out;
+@transition-margin: margin 0.3s ease-in-out;
+@transition-fade: opacity 0.15s linear;
+@transition-color: color 0.3s linear;
+@transition-collapse: max-height 0.3s ease;
+@transition-width: width 0.3s ease;
+@transition-left: left 0.3s ease;
+@transition-right: right 0.3s ease;
+@transition-top: top 0.3s ease;
+@transition-bottom: bottom 0.3s ease;
+@transition-transform: transform 0.3s ease;
+
+// Grid
+@gridColumns12: 12;
+@gridGapSize: 12px;
+@gridCellBaseSize: 8.333335%;
+
+// Windows
+@winBorderSize: 0.5rem;
+@winBorderColor: #6badf6;
+@winBorderColorInactive: #ebebeb;
+@winDialogContentBackground: #ededed;
+@winFlatBackgroundColor: #ffffff;
+@winFlatBorderColor: #e9e9e9;
+@winFlatSystemButtonHoverBackground: #cde6f7;
+@winFlatSystemButtonActiveBackground: #92c0e0;
+@winFlatSystemButtonActiveColor: #2a8dd4;
+@winFlatSystemButtonRestColor: #777777;
+@winCloseButtonColor: #c75050;
+@winCloseButtonActiveColor: #e04343;
+@winCloseButtonInActiveColor: #bcbcbc;
+@winCaptionBackground: #3c6478;
+@winCaptionColor: @white;
+
+@streamerItemWidth: 224px;
+@streamerTimelineImage: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAATCAYAAACJKwFWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2OWY4NzBhNi0zODU3LWFmNDEtYWMzZS03YzlkOTcxZjMxOTIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEREMzg4NkJBQjkyMTFFN0JDQTVFMzg4RUE0RDc4RkQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEREMzg4NkFBQjkyMTFFN0JDQTVFMzg4RUE0RDc4RkQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YzEyZGQ1NjktNmM3YS0yZTQ2LTg2MmQtZWY3OGU5MmQ4NWY2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY5Zjg3MGE2LTM4NTctYWY0MS1hYzNlLTdjOWQ5NzFmMzE5MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv3rUTMAAAIHSURBVHja7Jq/S0JRHMWfpj37oSA8qikIImioIaghaHDrD2hqaG4R6i8paGksh2iIQGhoCYewocChhkDEoAjsx5IGDZV2Ll6huXvoKZwPHHwuh3O/737f03tvpNVqeUKIcIiYBiwUCoe4LhH8FqAadO/oE0BT0AUh0xxUhyqOPklohpRpFvqEbh194tA8dGX9XJi2fteE8S1CN1DD0WcSSpHmpslUhl4dfcahMeiSMTdj9qKYyWR2/uKA5v39dd1OUNebOAKtQtuEQa5Bd9C5o4+pVRbaImRagd6hU4LXJinTMjQMHZEymfn05eizBE1AOUKmDegAeiY8PE0z7xIyZaP2op/0Rk1AaYKPeQP6pEyD9inqyigx05B9ozLG5ttPV5I2FwPf1suVFGlsnUwBwSdt5zmD/qh+hQsRHmpAIdSAQqgBhRBqQCHUgEKIfyBG9jP7SD4pV5KYibFs3EfMZJbWu+0I0oDH24ZI2nq5krD3j5UpTvDxiZnoDWg2Ot8IPmbjfI+UqQo9EXw+vPZJCgYn0HeXNeCjx9vfKtt6uVIjPqhMpjrBx5ykqXRrA1ZJPg3P/RhTh2OSzwu0T/J66MJfQ2dEL1adisRMOZJPyeMcjdN/QCHCRg0ohBpQCDWgECKkBgxUip4k4rVXLiMqRU8SdBowr1r0JE2vvbTeVCl6kvyPAAMASGlSBhr76A8AAAAASUVORK5CYII=';
+
+@activityRingTime: 4000ms;
+@activityRingSize: 32px;
+@activityColor: @white;
+@activityColorDark: @darkGray;
+@activityRingRotate: -14deg;
+@activityRingTimeMute: 30;
+
+@hintBackground: rgba(255, 252, 192, 1);
+@hintColor: @dark;
+
+@mpStep: 4;
+@mpUnit: px;
+
+@playerInactiveColor: #555555;
+@playerActiveColor: @green;
+@playerHoverColor: @white;
+@playerControlsBackground: rgba(34, 34, 34, 0.5);
+
+@ribbonMenuStaticBackground: #1979ca;
+@ribbonMenuBackground: #ffffff;
+@ribbonMenuActiveBackground: #f5f6f7;
+@ribbonMenuBorder: #dadbdc;
+@ribbonMenuItemBorder: #a4cef9;
+@ribbonMenuItemActiveBorder: #1979ca;
+@ribbonMenuItemHoverBackground: rgba(
+	red(#a4cef9),
+	green(#a4cef9),
+	blue(#a4cef9),
+	0.2
+);
+@ribbonMenuItemActiveBackground: rgba(
+	red(#a4cef9),
+	green(#a4cef9),
+	blue(#a4cef9),
+	0.8
+);
+@ribbonDropdownBackground: #fbfcfd;
+@ribbonDropdownDivider: #dcddde;
+@ribbonDropdownShadow: #e3e4e5;
+
+@inputHeight: 36px;
+
+@badgeFontSize: 12px;

@@ -8,15 +8,15 @@ fi
 
 echo "Adding storybook story for '${COMPONENT_NAME}' for local development"
 
-touch ./src/components/$COMPONENT_NAME/examples/$COMPONENT_NAME.stories.js
+touch ./src/components/$COMPONENT_NAME/$COMPONENT_NAME.story.js
 
-cat << EOF >> ./src/components/$COMPONENT_NAME/examples/$COMPONENT_NAME.stories.js
+cat << EOF >> ./src/components/$COMPONENT_NAME/$COMPONENT_NAME.story.js
 import React from 'react';
 import { text, select, boolean, object } from '@storybook/addon-knobs';
-import { optionalSelect } from '../../../util/optionalSelect';
+import { optionalSelect } from '../../util/optionalSelect';
 import { action } from '@storybook/addon-actions';
-import readme from '../README.md';
-import ${COMPONENT_NAME} from '../${COMPONENT_NAME}';
+import readme from './README.md';
+import ${COMPONENT_NAME} from './${COMPONENT_NAME}';
 
 const component = () => {
 	return (
@@ -30,6 +30,6 @@ const component = () => {
 
 export default [readme, component];
 EOF
-echo "Created ./src/components/$COMPONENT_NAME/examples/$COMPONENT_NAME.stories.js"
+echo "Created ./src/components/$COMPONENT_NAME/$COMPONENT_NAME.stories.js"
 
 echo "Story added for '${COMPONENT_NAME}'. Do \`npm run dev\` to start development"
