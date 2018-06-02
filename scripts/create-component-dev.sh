@@ -8,21 +8,28 @@ fi
 
 echo "Adding storybook story for '${COMPONENT_NAME}' for local development"
 
-touch ./stories/$COMPONENT_NAME.stories.js
+touch ./src/components/$COMPONENT_NAME/examples/$COMPONENT_NAME.stories.js
 
-cat << EOF >> ./stories/$COMPONENT_NAME.stories.js
+cat << EOF >> ./src/components/$COMPONENT_NAME/examples/$COMPONENT_NAME.stories.js
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import '../src/index.less';
-import ${COMPONENT_NAME} from '../src/components/${COMPONENT_NAME}/${COMPONENT_NAME}';
+import { text, select, boolean, object } from '@storybook/addon-knobs';
+import { optionalSelect } from '../../../util/optionalSelect';
+import { action } from '@storybook/addon-actions';
+import readme from '../README.md';
+import ${COMPONENT_NAME} from '../${COMPONENT_NAME}';
 
-storiesOf('${COMPONENT_NAME}', module)
-	.add('dev', () => {
-		return (
-			<${COMPONENT_NAME} />
-		);
-	});
+const component = () => {
+	return (
+		<div
+    style={{ backgroundColor: '#00a7cf', height: '300px', width: '200px' }}
+		>
+			<${COMPONENT_NAME}/>
+		</div>
+	);
+};
+
+export default [readme, component];
 EOF
-echo "Created ./stories/$COMPONENT_NAME.stories.js"
+echo "Created ./src/components/$COMPONENT_NAME/examples/$COMPONENT_NAME.stories.js"
 
 echo "Story added for '${COMPONENT_NAME}'. Do \`npm run dev\` to start development"

@@ -23,7 +23,6 @@
     "lint-fix": "eslint ./src --ext .js,.jsx --fix",
     "path-import-modules-generate": "node ./scripts/path-import-modules-exec.js --generate",
     "path-import-modules-remove": "node ./scripts/path-import-modules-exec.js --remove",
-    "postpublish": "npm run path-import-modules-remove && npm run build-docs && scripts/upload-docs-build-gh.sh && scripts/upload-docs-build-docspot.sh",
     "precommit": "lint-staged",
     "prettier": "prettier --write '{src,tests,scripts}/**/*.{js,jsx}'",
     "preversion": "rm -rf dist && npm run lint && npm run build-js && npm run build-bundle &&  npm run path-import-modules-generate",
@@ -32,7 +31,6 @@
     "storybook": "start-storybook -p 6006",
     "stylelint": "stylelint 'src/**/*.less' --config .stylelintrc",
     "test": "npm run lint && npm run cover",
-    "upload-docs": "npm run build-docs && scripts/upload-docs-build-docspot.sh",
     "watch": "npm run jest -- --watch",
     "ii": "npm install --registry https://registry.npm.taobao.org"
   },

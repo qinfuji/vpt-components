@@ -17,12 +17,10 @@ stories = stories
 	.addDecorator((story, context) => withInfo('')(story)(context))
 	.addDecorator(storyWrapper)
 	.addDecorator(withKnobs);
-// .add('subTest', withReadme(...TestComp))
-// .add('Button', withReadme(...Button));
 
 const req = require.context('../src/components', true, /\.story.js$/);
 
 req.keys().forEach(filename => {
-	console.log(filename, req);
+	//console.log(filename, req);
 	stories.add(filename, withReadme(...req(filename).default));
 });

@@ -44,7 +44,9 @@ function PaneStyle({
 
 class Pane extends PureComponent {
 	setRef = element => {
-		this.props.innerRef(this.props.index, element);
+		if (this.props.innerRef) {
+			this.props.innerRef(this.props.index, element);
+		}
 	};
 
 	render() {

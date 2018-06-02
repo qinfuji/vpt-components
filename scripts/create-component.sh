@@ -17,8 +17,7 @@ function create-component-all {
 	./scripts/create-component-source.sh $COMPONENT_NAME &&
 	./scripts/create-component-dev.sh $COMPONENT_NAME &&
 	./scripts/create-component-exports.sh $COMPONENT_NAME &&
-	./scripts/create-component-less.sh $COMPONENT_NAME &&
-	./scripts/create-component-docs.sh $COMPONENT_NAME
+	./scripts/create-component-less.sh $COMPONENT_NAME
 }
 
 create-component-all | while read line; do echo "> $line"; done
