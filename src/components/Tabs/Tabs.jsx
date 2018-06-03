@@ -23,13 +23,13 @@ class Tabs extends React.Component {
 				<div className="expand-title">Home</div>
 				<ul>
 					<li className="active">
-						<a href="#">文件</a>
+						<a href="#">工具箱</a>
 					</li>
 					<li>
-						<a href="#">编辑</a>
+						<a href="#">项目结构</a>
 					</li>
 					<li>
-						<a href="#">设置</a>
+						<a href="#">项目依赖</a>
 					</li>
 					<li className="disabled">
 						<a href="#">帮助</a>
