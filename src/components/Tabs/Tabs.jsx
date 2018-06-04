@@ -9,12 +9,12 @@ class Tabs extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeTab: props.activeTab
+			activeTab: props.activeTab,
 		};
 	}
 
 	state = {
-		activeTab: null
+		activeTab: null,
 	};
 
 	static getDerivedStateFromProps(nextProps, prevState) {
@@ -71,7 +71,7 @@ class Tabs extends React.Component {
 		React.Children.forEach(children, child => {
 			if (child.type == TabItem) {
 				ret.push({
-					...child.props
+					...child.props,
 				});
 			}
 		});
@@ -108,10 +108,10 @@ class Tabs extends React.Component {
 			size,
 			textCompress,
 			children,
-			tabItems
+			tabItems,
 		} = this.props;
 		let cx = classname('tabs', size, 'tabs-expand', position, orientation, {
-			'text-compress': !!textCompress
+			'text-compress': !!textCompress,
 		});
 		return (
 			<div className={cx} style={style}>
@@ -173,9 +173,9 @@ Tabs.propTypes = {
 			label: PropTypes.string,
 			icon: PropTypes.string,
 			style: PropTypes.object,
-			disabled: PropTypes.bool
+			disabled: PropTypes.bool,
 		})
-	)
+	),
 };
 
 Tabs.defaultProps = {
@@ -184,7 +184,7 @@ Tabs.defaultProps = {
 	size: 'md',
 	textCompress: true,
 	tabItems: null,
-	activeTab: null
+	activeTab: null,
 };
 
 export default Tabs;
