@@ -9,20 +9,20 @@ function PaneStyle({
 	size,
 	minSize,
 	maxSize,
-	resizersSize
+	resizersSize,
 }) {
 	const value = size || initialSize;
 	const vertical = split === 'vertical';
 	const styleProp = {
 		minSize: vertical ? 'minWidth' : 'minHeight',
 		maxSize: vertical ? 'maxWidth' : 'maxHeight',
-		size: vertical ? 'width' : 'height'
+		size: vertical ? 'width' : 'height',
 	};
 
 	let style = {
 		display: 'flex',
 		outline: 'none',
-		margin: '2px 1px'
+		margin: '2px 1px',
 	};
 
 	style[styleProp.minSize] = convertSizeToCssValue(minSize, resizersSize);
@@ -68,14 +68,14 @@ Pane.propTypes = {
 	className: PropTypes.string,
 	initialSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	minSize: PropTypes.string,
-	maxSize: PropTypes.string
+	maxSize: PropTypes.string,
 };
 
 Pane.defaultProps = {
 	initialSize: '1',
 	split: 'vertical',
 	minSize: '0',
-	maxSize: '100%'
+	maxSize: '100%',
 };
 
 export default Pane;

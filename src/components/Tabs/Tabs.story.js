@@ -13,28 +13,28 @@ const component = () => {
 
 	let orientation = {
 		horizontal: 'horizontal',
-		vertical: 'vertical'
+		vertical: 'vertical',
 	};
 
 	let position = {
 		top: 'top',
 		left: 'left',
 		bottom: 'bottom',
-		right: 'right'
+		right: 'right',
 	};
 
 	let size = {
 		sm: 'sm',
 		md: 'md',
 		lg: 'lg',
-		xl: 'xl'
+		xl: 'xl',
 	};
 
 	let itemData = (name, label, isActive, isdisabled) => {
 		return {
 			name: name,
 			label: label,
-			isdisabled: !!isdisabled
+			isdisabled: !!isdisabled,
 		};
 	};
 
