@@ -17,7 +17,7 @@ const ColumnStyle = glamorous.div({
 	flex: 1,
 	outline: 'none',
 	overflow: 'hidden',
-	userSelect: 'text'
+	userSelect: 'text',
 });
 
 const RowStyle = glamorous.div({
@@ -27,7 +27,7 @@ const RowStyle = glamorous.div({
 	flex: 1,
 	outline: 'none',
 	overflow: 'hidden',
-	userSelect: 'text'
+	userSelect: 'text',
 });
 
 class SplitPane extends Component {
@@ -35,7 +35,7 @@ class SplitPane extends Component {
 		super(props);
 
 		this.state = {
-			sizes: this.getPanePropSize(props)
+			sizes: this.getPanePropSize(props),
 		};
 	}
 
@@ -46,7 +46,6 @@ class SplitPane extends Component {
 	componentWillUnmount() {
 		document.removeEventListener('mouseup', this.onMouseUp);
 		document.removeEventListener('mousemove', this.onMouseMove);
-
 		document.removeEventListener('touchmove', this.onTouchMove);
 		document.removeEventListener('touchend', this.onMouseUp);
 	}
@@ -63,9 +62,7 @@ class SplitPane extends Component {
 
 	onTouchStart = (event, resizerIndex) => {
 		event.preventDefault();
-
 		const { clientX, clientY } = event.touches[0];
-
 		this.onDown(resizerIndex, clientX, clientY);
 	};
 
@@ -147,7 +144,7 @@ class SplitPane extends Component {
 			splitPaneSizePx,
 			minSizesPx,
 			maxSizesPx,
-			sizesPx
+			sizesPx,
 		};
 	}
 
@@ -193,7 +190,7 @@ class SplitPane extends Component {
 			minSizesPx,
 			maxSizesPx,
 			splitPaneSizePx,
-			paneDimensions
+			paneDimensions,
 		} = this.dimensionsSnapshot;
 
 		const sizeDim = split === 'vertical' ? 'width' : 'height';
@@ -279,7 +276,7 @@ class SplitPane extends Component {
 		onChange && onChange(sizes);
 
 		this.setState({
-			sizes
+			sizes,
 		});
 	}
 
@@ -313,7 +310,7 @@ class SplitPane extends Component {
 				key: `Pane-${idx}`,
 				innerRef: this.setPaneRef,
 				resizersSize,
-				size: sizes[idx]
+				size: sizes[idx],
 			};
 			if (isPane) {
 				pane = cloneElement(child, paneProps);
@@ -361,13 +358,13 @@ SplitPane.propTypes = {
 	resizerSize: PropTypes.number,
 	onChange: PropTypes.func,
 	onResizeStart: PropTypes.func,
-	onResizeEnd: PropTypes.func
+	onResizeEnd: PropTypes.func,
 };
 
 SplitPane.defaultProps = {
 	split: 'vertical',
 	resizerSize: 1,
-	allowResize: true
+	allowResize: true,
 };
 
 export default SplitPane;
