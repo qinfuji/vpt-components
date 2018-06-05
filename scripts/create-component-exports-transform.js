@@ -29,7 +29,7 @@ module.exports = (fileInfo, api, options) => {
 				if (path.value.specifiers[0].local.type === 'Identifier') {
 					importDeclarations.push({
 						name: path.value.specifiers[0].local.name,
-						path
+						path,
 					});
 				}
 			}
@@ -37,12 +37,12 @@ module.exports = (fileInfo, api, options) => {
 	});
 	importDeclarations.push({
 		name: componentName,
-		path: null
+		path: null,
 	});
 
 	const sortedImportDeclarations = _.sortBy(importDeclarations, 'name');
 	const sortedImportIndex = _.findIndex(sortedImportDeclarations, {
-		name: componentName
+		name: componentName,
 	});
 	let insertedPosition;
 	let insertedNextTo;

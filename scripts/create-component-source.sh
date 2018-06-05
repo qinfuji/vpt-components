@@ -55,8 +55,8 @@ EOF
 echo "Created ./src/components/$COMPONENT_NAME/$COMPONENT_NAME.spec.jsx"
 
 cat << EOF >> ./src/components/$COMPONENT_NAME/${COMPONENT_NAME}.less
-@import (reference) '../../styles/variables.less';
-@import (reference) '../../styles/mixins.less';
+@import (reference) '../../styles/include/vars.less';
+@import (reference) '../../styles/include/mixins.less';
 
 .vpt-${COMPONENT_NAME} {
 	display: flex;
