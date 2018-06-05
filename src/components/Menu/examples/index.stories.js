@@ -6,6 +6,8 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import readme from '../README.md';
 import defaultMenu from './default.story';
+import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
+initializeIcons(/* optional base url */);
 
 const storyWrapper = story => {
 	return <div style={{ margin: '35px' }}>{story()}</div>;
