@@ -4,15 +4,10 @@ import { optionalSelect } from '../../util/optionalSelect';
 import { action } from '@storybook/addon-actions';
 import readme from './README.md';
 import Menu from './Menu';
+import '../../index.less';
 
 const component = () => {
-	return (
-		<div
-			style={{ backgroundColor: '#00a7cf', height: '300px', width: '200px' }}
-		>
-			<Menu />
-		</div>
-	);
+	return <Menu />;
 };
 
 export default [readme, component];

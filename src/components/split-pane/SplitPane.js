@@ -39,10 +39,6 @@ class SplitPane extends Component {
 		};
 	}
 
-	getDerivedStateFromProps(nextProps) {
-		this.setState({ sizes: this.getPanePropSize(nextProps) });
-	}
-
 	componentWillUnmount() {
 		document.removeEventListener('mouseup', this.onMouseUp);
 		document.removeEventListener('mousemove', this.onMouseMove);
@@ -54,9 +50,7 @@ class SplitPane extends Component {
 		if (event.button !== 0) {
 			return;
 		}
-
 		event.preventDefault();
-
 		this.onDown(resizerIndex, event.clientX, event.clientY);
 	};
 
@@ -92,24 +86,19 @@ class SplitPane extends Component {
 
 	onMouseMove = event => {
 		event.preventDefault();
-
 		this.onMove(event.clientX, event.clientY);
 	};
 
 	onTouchMove = event => {
 		event.preventDefault();
-
 		const { clientX, clientY } = event.touches[0];
-
 		this.onMove(clientX, clientY);
 	};
 
 	onMouseUp = event => {
 		event.preventDefault();
-
 		document.removeEventListener('mouseup', this.onMouseUp);
 		document.removeEventListener('mousemove', this.onMouseMove);
-
 		document.removeEventListener('touchmove', this.onTouchMove);
 		document.removeEventListener('touchend', this.onMouseUp);
 		document.addEventListener('touchcancel', this.onMouseUp);
@@ -125,7 +114,6 @@ class SplitPane extends Component {
 		const splitPaneDimensions = this.splitPane.getBoundingClientRect();
 		const minSizes = this.getPanePropMinMaxSize(props, 'minSize');
 		const maxSizes = this.getPanePropMinMaxSize(props, 'maxSize');
-
 		const resizersSize = this.getResizersSize();
 		const splitPaneSizePx =
 			split === 'vertical'
