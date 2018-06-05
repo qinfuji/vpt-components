@@ -5,7 +5,6 @@ import {
 	ICommandBarProps,
 } from 'office-ui-fabric-react/lib/CommandBar';
 import PropTypes from 'prop-types';
-import style from './Menu.less';
 
 const items = [
 	{

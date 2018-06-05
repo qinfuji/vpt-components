@@ -13,14 +13,14 @@ module.exports = {
 		path: path.join(__dirname, 'dist'),
 		filename: isProduction ? 'vpt-components.min.js' : 'vpt-components.js',
 		libraryTarget: 'umd',
-		library: 'Lucid'
+		library: 'vpt-components',
 	},
 	module: {
 		rules: [
 			{
 				test: /\.jsx?$/,
 				loader: 'babel-loader',
-				include: [path.resolve(__dirname, 'src')]
+				include: [path.resolve(__dirname, 'src')],
 			},
 			{
 				test: /\.less$/,
@@ -28,27 +28,37 @@ module.exports = {
 					MiniCssExtractPlugin.loader,
 					{ loader: 'css-loader', options: { sourceMap: !isProduction } },
 					{ loader: 'postcss-loader', options: { sourceMap: !isProduction } },
-					{ loader: 'less-loader', options: { sourceMap: !isProduction } }
-				]
-			}
-		]
+					{ loader: 'less-loader', options: { sourceMap: !isProduction } },
+				],
+			},
+			{
+				test: /\.ts(x?)$/,
+				include: [path.resolve(__dirname, 'src')],
+				exclude: /node_modules/,
+				use: [
+					{ loader: 'babel-loader' },
+					{ loader: 'ts-loader' },
+					{ loader: 'react-docgen-typescript-loader' },
+				],
+			},
+		],
 	},
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['.ts', '.tsx', '.js', '.jsx'],
 	},
 	devtool: isProduction ? false : 'source-map',
 	externals: {
 		react: 'React',
-		'react-dom': 'ReactDOM'
+		'react-dom': 'ReactDOM',
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: 'vpt-components.css',
-			disable: !isProduction
+			disable: !isProduction,
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'index.css',
-			disable: !isProduction
-		})
-	]
+			disable: !isProduction,
+		}),
+	],
 };

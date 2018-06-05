@@ -6,7 +6,7 @@ module.exports = {
 			{
 				test: /\.css?$/,
 				use: ['style-loader', 'raw-loader'],
-				include: path.resolve(__dirname, '../')
+				include: path.resolve(__dirname, '../'),
 			},
 			{
 				test: /\.less/,
@@ -18,15 +18,25 @@ module.exports = {
 						options: {
 							modules: true,
 							localIndexName: '[name]__[local]___[hash:base64:5]'
-						}*/
+						}*/,
 					},
-					{ loader: 'less-loader' }
-				]
+					{ loader: 'less-loader' },
+				],
 			},
 			{
 				test: /\.md$/,
-				use: 'raw-loader'
-			}
-		]
-	}
+				use: 'raw-loader',
+			},
+			// {
+			// 	test: /\.tsx?$/,
+			// 	exclude: /node_modules/,
+			// 	include: path.resolve(__dirname, '../src'),
+			// 	use: [
+			// 		require.resolve('ts-loader'),
+			// 		require.resolve('react-docgen-typescript-loader'),
+			// 	],
+			// },
+		],
+	},
+	resolve: { extensions: ['.js', '.jsx'] },
 };

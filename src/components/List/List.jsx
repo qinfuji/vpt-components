@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from './List.less';
+import './List.less';
 
 class List extends React.Component {
 	render() {
