@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classname from 'classnames';
-import './Tabs.less';
 import TabItem from './TabItem';
 
 class Tabs extends React.Component {

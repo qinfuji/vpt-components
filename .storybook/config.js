@@ -2,8 +2,8 @@ import React from 'react';
 import { configure, setAddon } from '@storybook/react';
 import infoAddon, { setDefaults } from '@storybook/addon-info';
 import { setOptions } from '@storybook/addon-options';
-// import ReadmeContainer from 'storybook-readme/components/readme-container';
-// import DefaultPreview from 'storybook-readme/with-docs';
+import ReadmeContainer from 'storybook-readme/components/ReadmePanel';
+import DefaultPreview from 'storybook-readme/with-docs';
 
 import './index.css';
 
@@ -16,7 +16,7 @@ setOptions({
 	showSearchBox: false,
 	downPanelInRight: true,
 	sortStoriesByKind: true,
-	panelRight: true
+	panelRight: true,
 });
 
 setDefaults({
@@ -26,17 +26,19 @@ setDefaults({
 	styles: stylesheet => {
 		stylesheet.infoBody = {
 			infoBody: {
-				padding: '10px'
-			}
+				padding: '10px',
+			},
 		};
 		return stylesheet;
 	},
-	maxPropsIntoLine: 1
-	// propTablesExclude: [ReadmeContainer, DefaultPreview]
+	maxPropsIntoLine: 1,
+	propTablesExclude: [ReadmeContainer, DefaultPreview],
 });
 
+const req = require.context('../src/components', true, /index\.stories\.js$/);
+
 function loadStories() {
-	require('../_stories/');
+	req.keys().forEach(filename => req(filename));
 }
 
 setAddon(infoAddon);
