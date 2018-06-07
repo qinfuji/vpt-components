@@ -9,12 +9,13 @@
 		"url": "https://github.com/qinfuji/vpt.git"
 	},
 	"scripts": {
-		"tsc": "tsc -p .",
 		"build": "npm run build-js && npm run build-modules",
 		"build-bundle": "scripts/build-bundle.sh",
 		"build-docs": "rm -rf ./dist/docs && NODE_ENV=documentation build-storybook -o ./dist/docs",
-		"build-js": "NODE_ENV=production babel --extensions .js,.jsx,.tsx --ignore spec.js,docs,examples,test-entry.js,coverage ./src --out-dir ./dist",
-		"build-modules": "NODE_ENV=production BABEL_ENV=modules babel --extensions .js,.jsx --ignore spec.js,docs,examples,test-entry.js,coverage ./src --out-dir ./lib",
+		"tsc-js": "tsc -p . --outDir ./dist",
+		"tsc-modules": "tsc -p . --outDir ./lib",
+		"build-js": "npm run tsc-js && NODE_ENV=production babel --extensions .js,.jsx,.tsx --ignore spec.js,docs,examples,test-entry.js,coverage ./src --out-dir ./dist",
+		"build-modules": "npm run tsc-modules && NODE_ENV=production BABEL_ENV=modules babel --extensions .js,.jsx --ignore spec.js,docs,examples,test-entry.js,coverage ./src --out-dir ./lib",
 		"cover": "npm run jest -- --coverage",
 		"create-component": "scripts/create-component.sh",
 		"dev": "npm run storybook",
