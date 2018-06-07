@@ -16,3 +16,4 @@ storiesOf('List', module)
 	.addDecorator(storyWrapper)
 	.addDecorator(withKnobs)
 	.add('default', withReadme(readme, defaultList));
+//.add('type', withInfo({ inline: false })(defaultList));
