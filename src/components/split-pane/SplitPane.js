@@ -290,7 +290,7 @@ class SplitPane extends Component {
 		const elements = children.reduce((acc, child, idx) => {
 			let pane;
 			const resizerIndex = idx - 1;
-			const isPane = child.type == Pane;
+			//const isPane = child.type == React.createElement(Pane).type;
 			const paneProps = {
 				index: idx,
 				'data-type': 'Pane',
@@ -300,11 +300,11 @@ class SplitPane extends Component {
 				resizersSize,
 				size: sizes[idx],
 			};
-			if (isPane) {
-				pane = cloneElement(child, paneProps);
-			} else {
-				pane = <Pane {...paneProps}>{child}</Pane>;
-			}
+			//if (isPane) {
+			pane = cloneElement(child, paneProps);
+			//} else {
+			//	pane = <Pane {...paneProps}>{child}</Pane>;
+			//}
 
 			if (acc.length === 0) {
 				return [...acc, pane];

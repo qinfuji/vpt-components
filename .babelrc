@@ -5,120 +5,150 @@
 				[
 					"transform-class-properties",
 					{
-						"spec": true
-					}
+						"spec": true,
+					},
 				],
 				["transform-object-rest-spread"],
-				["babel-plugin-transform-require-ignore", {
-					"extensions": [".less", ".css"]
-				}]
+				[
+					"babel-plugin-transform-require-ignore",
+					{
+						"extensions": [".less", ".css"],
+					},
+				],
 			],
 			"presets": [
-				["env", {
-					"targets": {
-						"browsers": ["last 2 versions"]
-					}
-				}],
+				[
+					"env",
+					{
+						"targets": {
+							"browsers": ["last 2 versions"],
+						},
+					},
+				],
 				"react",
 				//"typescript"
-			]
+			],
 		},
 		"development": {
 			"plugins": [
 				[
 					"transform-class-properties",
 					{
-						"spec": true
-					}
+						"spec": true,
+					},
 				],
 				["transform-object-rest-spread"],
-				"lodash"
+				"lodash",
 			],
 			"presets": [
-				["env", {
-					"targets": {
-						"browsers": ["last 2 versions"]
-					}
-				}],
+				[
+					"env",
+					{
+						"targets": {
+							"browsers": ["last 2 versions"],
+						},
+					},
+				],
 				"react",
 				//"typescript"
-			]
+			],
 		},
 		"documentation": {
 			"plugins": [
 				[
 					"transform-class-properties",
 					{
-						"spec": true
-					}
+						"spec": true,
+					},
 				],
 				["transform-object-rest-spread"],
-				"lodash"
+				"lodash",
 			],
 			"presets": [
-				["env", {
-					"targets": {
-						"browsers": ["last 2 versions"]
-					}
-				}],
+				[
+					"env",
+					{
+						"targets": {
+							"browsers": ["last 2 versions"],
+						},
+					},
+				],
 				"react",
 				//"typescript"
-			]
+			],
 		},
 		"production": {
 			"plugins": [
 				[
 					"transform-class-properties",
 					{
-						"spec": true
-					}
+						"spec": true,
+					},
 				],
 				["transform-object-rest-spread"],
-				["babel-plugin-transform-require-ignore", {
-					"extensions": [".less", ".css"]
-				}],
-				["react-peek/babel", {
-					"minifyStatics": true
-				}],
-				"lodash"
+				[
+					"babel-plugin-transform-require-ignore",
+					{
+						"extensions": [".less", ".css"],
+					},
+				],
+				[
+					"react-peek/babel",
+					{
+						"minifyStatics": true,
+					},
+				],
+				"lodash",
 			],
 			"presets": [
-				["env", {
-					"targets": {
-						"browsers": ["last 2 versions"]
-					}
-				}],
+				[
+					"env",
+					{
+						"targets": {
+							"browsers": ["last 2 versions"],
+						},
+					},
+				],
 				"react",
 				//"typescript"
-			]
+			],
 		},
 		"modules": {
 			"plugins": [
 				[
 					"transform-class-properties",
 					{
-						"spec": true
-					}
+						"spec": true,
+					},
 				],
 				["transform-object-rest-spread"],
-				["babel-plugin-transform-require-ignore", {
-					"extensions": [".less", ".css"]
-				}],
-				["react-peek/babel", {
-					"minifyStatics": true
-				}],
-				"lodash"
+				[
+					"babel-plugin-transform-require-ignore",
+					{
+						"extensions": [".less", ".css"],
+					},
+				],
+				[
+					"react-peek/babel",
+					{
+						"minifyStatics": true,
+					},
+				],
+				"lodash",
 			],
 			"presets": [
-				["env", {
-					"targets": {
-						"browsers": ["last 2 versions"]
+				[
+					"env",
+					{
+						"targets": {
+							"browsers": ["last 2 versions"],
+						},
+						"modules": false,
 					},
-					"modules": false
-				}],
+				],
 				"react",
 				//"typescript"
-			]
-		}
-	}
+			],
+		},
+	},
 }
