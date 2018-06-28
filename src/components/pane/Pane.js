@@ -20,9 +20,10 @@ function PaneStyle({
 	};
 
 	let style = {
-		display: 'flex',
+		//display: 'flex',
 		outline: 'none',
-		margin: '2px 1px',
+		//margin: '2px 1px',
+		position: 'relative',
 	};
 
 	style[styleProp.minSize] = convertSizeToCssValue(minSize, resizersSize);
