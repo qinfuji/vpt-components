@@ -6,7 +6,7 @@ import { mount, shallow } from 'enzyme';
 import assert from 'assert';
 import _ from 'lodash';
 import glob from 'glob';
-import * as lucid from '../index';
+import * as vpt from '../index';
 
 // Common tests for all our components
 export function common(
@@ -16,7 +16,7 @@ export function common(
 		exemptFunctionProps = [],
 		exemptChildComponents = [],
 		selectRoot = _.identity,
-		noExport = false
+		noExport = false,
 	} = {}
 ) {
 	function generateDefaultProps(props = {}) {
@@ -42,7 +42,7 @@ export function common(
 
 		it('should pass through styles to the root element', () => {
 			const style = {
-				backgroundColor: '#f0f'
+				backgroundColor: '#f0f',
 			};
 			const wrapper = shallow(
 				<Component {...generateDefaultProps()} style={style} />,
@@ -75,7 +75,7 @@ export function common(
 		it('should have an application scoped base class', () => {
 			const expectedClass = 'lucid-' + Component.displayName;
 			const wrapper = shallow(<Component {...generateDefaultProps()} />, {
-				disableLifecycleMethods: true
+				disableLifecycleMethods: true,
 			});
 			const rootWrapper = selectRoot(wrapper).first();
 			const classNames = rootWrapper.prop('className').split(' ');
@@ -88,7 +88,7 @@ export function common(
 
 		it('should have only application scoped classes', () => {
 			const wrapper = shallow(<Component {...generateDefaultProps()} />, {
-				disableLifecycleMethods: true
+				disableLifecycleMethods: true,
 			});
 			const rootWrapper = selectRoot(wrapper).first();
 			const parentClasses = rootWrapper.prop('className').split(' ');
@@ -164,7 +164,7 @@ export function common(
 				const title = basename(path, '.jsx');
 				it(`should match snapshot(s) for ${title}`, () => {
 					const shallowExample = shallow(<Example />, {
-						disableLifecycleMethods: true
+						disableLifecycleMethods: true,
 					});
 
 					// If the root of the example is an instance of the Component under test, snapshot it.
@@ -172,14 +172,14 @@ export function common(
 					if (shallowExample.is(Component.displayName)) {
 						expect(
 							shallow(<Component {...shallowExample.props()} />, {
-								disableLifecycleMethods: true
+								disableLifecycleMethods: true,
 							})
 						).toMatchSnapshot();
 					} else {
 						shallowExample.find(Component.displayName).forEach(example => {
 							expect(
 								shallow(<Component {...example.props()} />, {
-									disableLifecycleMethods: true
+									disableLifecycleMethods: true,
 								})
 							).toMatchSnapshot();
 						});
@@ -191,7 +191,7 @@ export function common(
 		// Only run this test if it's a public component
 		if (!Component._isPrivate && !noExport) {
 			it('should be available as an exported module from index.js', () => {
-				assert(lucid[Component.displayName]);
+				assert(vpt[Component.displayName]);
 			});
 		}
 	});
@@ -235,7 +235,7 @@ export function controls(
 			const props = {
 				specialProp: expectedSpecialProp,
 				[callbackName]: sinon.spy(),
-				...additionalProps
+				...additionalProps,
 			};
 			const wrapper = mount(<Component {...props} />);
 
@@ -247,7 +247,7 @@ export function controls(
 			// Last argument should be an object with `uniqueId` and `event`
 			const {
 				props: { specialProp },
-				event
+				event,
 			} = _.last(props[callbackName].args[0]);
 
 			assert(event, 'missing event');
@@ -274,7 +274,7 @@ const createMockDateClass = (...args) =>
 			UTC: NativeDate.UTC,
 			parse: NativeDate.parse,
 			now: () => new NativeDate(...args).getTime(),
-			prototype: NativeDate.prototype
+			prototype: NativeDate.prototype,
 		}
 	);
 
@@ -285,6 +285,6 @@ export const mockDate = _.assign(
 	{
 		restore() {
 			global.Date = NativeDate;
-		}
+		},
 	}
 );

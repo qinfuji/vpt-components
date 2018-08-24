@@ -35,10 +35,8 @@ setDefaults({
 	propTablesExclude: [ReadmeContainer, DefaultPreview],
 });
 
-const req = require.context('../src/components', true, /index\.stories\.js$/);
-
 function loadStories() {
-	req.keys().forEach(filename => req(filename));
+	require('../_stories/');
 }
 
 setAddon(infoAddon);

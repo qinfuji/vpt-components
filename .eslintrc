@@ -1,11 +1,29 @@
 {
-	"extends": ["prettier", "prettier/react"],
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
 	"parser": "babel-eslint",
-	"plugins": ["prettier"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"jsx": true
+		},
+		"sourceType": "module",
+		"ecmaVersion": 7
+	},
+	"env": {
+		"browser": true,
+		"node": true,
+		"jasmine": true,
+		"es6": true
+	},
+	"plugins": ["react"],
+	"settings": {
+		"import/resolver": {
+			"babel-module": {}
+		},
+		"import/ignore": ["node_modules"]
+	},
 	"rules": {
-		"prettier/prettier": [
-			"error",
-			{ "trailingComma": "es5", "singleQuote": true, "useTabs": true }
-		]
+		"react/destructuring-assignment": 0,
+		"react/forbid-prop-types": 0
 	}
 }

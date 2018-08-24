@@ -1,9 +1,5 @@
-import './index.less';
-import List from './components/List/List';
+import Button from './components/Button/Button';
+import Container from "./components/Container/Container";
 import Menu from './components/Menu/Menu';
-import Pane from './components/pane';
-import SplitPane from './components/split-pane';
-
-import Tabs from './components/Tabs/Tabs';
-
-export { List, Menu, Pane, SplitPane, Tabs };
+import Tab from "./components/Tab/Tab";
+export { Button, Container, Menu, Tab };

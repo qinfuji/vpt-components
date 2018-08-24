@@ -20,8 +20,8 @@ const getImports = entryModulePath => {
 				specifier.local.name,
 				{
 					type: specifier.type,
-					moduleId: node.source.value
-				}
+					moduleId: node.source.value,
+				},
 			];
 		});
 	});
@@ -53,7 +53,7 @@ const exportCode = (specifierType, specifierPath, exportName) => {
 			import * as def from '${specifierPath}';
 			export default def;
 			export * from '${specifierPath}'
-		`
+		`,
 	};
 
 	// For some reason this doesn't pickup our .babelrc even though it's supposed to
@@ -83,7 +83,7 @@ const generateModules = (
 	const allExportsNames = getExports(entryModulePath);
 	const allExports = _.map(allExportsNames, exportName => [
 		exportName,
-		path.join(destinationPath, `${exportName}.js`)
+		path.join(destinationPath, `${exportName}.js`),
 	]);
 
 	const checkFilesPromise = Promise.all(

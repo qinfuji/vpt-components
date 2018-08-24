@@ -1,2 +1,2 @@
-coverage
-dist
+**/cra-files/*.*
+**/eslint-lint.js
